@@ -24,6 +24,16 @@ app.get("/km", (req, res) => {
     });
 });
 
+app.get("/kmJOIN", (req, res) => {
+    db.query("SELECT * FROM group_project INNER JOIN km_unit  ON group_project.group_id = km_unit.km_group ", (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send(result);
+      }
+    });
+});
+
 app.listen(3000, () => {
     console.log("Yey, your server is running on port 3000");
 });
